@@ -1,0 +1,112 @@
+{
+  "updated": "2026-10-14",
+  "instansi": "MUSHOLLA AR-ROYYAN",
+  "kota": "Banyuasin",
+  "tahun": 2026,
+  "saldoAwal": 0,
+  "ketua": "",
+  "bendahara": "",
+  "kategori": [
+    {
+      "nama": "Infak harian",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Infak Jumat",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Sedekah jamaah",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Kotak amal",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Donasi pembangunan",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Sumbangan khusus",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Hasil kegiatan",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Bantuan / hibah",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Infak Ramadan dan hari besar",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Zakat (jika relevan)",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Pemasukan lain-lain",
+      "jenis": "masuk"
+    },
+    {
+      "nama": "Listrik dan air",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Kebersihan",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Pemeliharaan bangunan",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Perlengkapan ibadah",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Inventaris dan peralatan",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Kegiatan keagamaan",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Kegiatan Ramadan dan hari besar",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Konsumsi kegiatan",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Honorarium petugas",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Pembangunan dan renovasi",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Bantuan sosial",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Administrasi",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Pengeluaran lain-lain",
+      "jenis": "keluar"
+    },
+    {
+      "nama": "Dana terikat / khusus",
+      "jenis": "keduanya"
+    }
+  ],
+  "transaksi": []
+}
