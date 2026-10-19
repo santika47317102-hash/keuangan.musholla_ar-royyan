@@ -458,6 +458,7 @@ function clearFoto(){curFoto='';$('tFoto').value='';showPrev()}
 const getDraft=()=>{try{return JSON.parse(localStorage.getItem(DRAFT_KEY))}catch(e){return null}};
 async function sha(s){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
 
+const viewData=()=>norm(clone(getDraft()||base));
 async function loadData(){
   try{const r=await fetch('data.json?t='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error(r.status);base=norm(await r.json())}
   catch(e){
@@ -465,7 +466,7 @@ async function loadData(){
     $('loadErr').textContent='Gagal memuat data.json. Pastikan file data.json berada di repositori yang sama dengan index.html, lalu muat ulang halaman.';
     $('loadErr').classList.remove('hidden');
   }
-  D=clone(base);renderAll();
+  D=viewData();renderAll();
   $('topbar').classList.add('done');
 }
 
@@ -523,7 +524,7 @@ function tab(t){curTab=t;
 const openM=id=>$(id).classList.remove('hidden');
 const closeM=id=>$(id).classList.add('hidden');
 function toggleAuth(){
-  if(isAdmin){if(confirm('Keluar dari mode Admin?')){isAdmin=false;D=clone(base);renderAll()}}
+  if(isAdmin){if(confirm('Keluar dari mode Admin?')){isAdmin=false;D=viewData();renderAll()}}
   else{$('lerr').textContent='';openM('mLogin')}
 }
 async function doLogin(e){
@@ -641,6 +642,7 @@ function togRin(){
   if(on)setTimeout(()=>{if(!$('tRin').value)$('tRin').focus()},0);
 }
 function openTrx(i){
+  if(!isAdmin)return;
   const ed=typeof i==='number';
   $('trxTitle').textContent=ed?'Edit Transaksi':'Tambah Transaksi';$('tIdx').value=ed?i:'';
   $('tTgl').min=D.tahun+'-01-01';$('tTgl').max=D.tahun+'-12-31';
@@ -650,7 +652,7 @@ function openTrx(i){
   openM('mTrx');
 }
 function saveTrx(e){
-  e.preventDefault();
+  e.preventDefault();if(!isAdmin)return;
   if(fotoBusy){alert('Foto sedang diproses, coba lagi sebentar.');return}
   const n=Math.round(+$('tNom').value);if(!(n>0))return;
   const j=$('tJenis').value,lain=$('tKat').value==='__lain__';
@@ -661,16 +663,17 @@ function saveTrx(e){
   const i=$('tIdx').value;if(i==='')D.transaksi.push(o);else D.transaksi[+i]=o;
   closeM('mTrx');dirty();
 }
-function delTrx(i){if(confirm('Hapus transaksi ini?')){D.transaksi.splice(i,1);dirty()}}
+function delTrx(i){if(!isAdmin)return;if(confirm('Hapus transaksi ini?')){D.transaksi.splice(i,1);dirty()}}
 
 function openSet(){
+  if(!isAdmin)return;
   $('sNama').value=D.instansi||'';$('sKota').value=D.kota||'';$('sThn').value=D.tahun;$('sSaldo').value=D.saldoAwal||0;$('sKetua').value=D.ketua||'';$('sSek').value=D.sekretaris||'';$('sBend').value=D.bendahara||'';
   const g=j=>D.kategori.filter(k=>k.jenis===j).map(k=>k.nama).join('\n');
   $('sKm').value=g('masuk');$('sKk').value=g('keluar');$('sKb').value=g('keduanya');
   openM('mSet');
 }
 function saveSet(e){
-  e.preventDefault();
+  e.preventDefault();if(!isAdmin)return;
   const L=v=>[...new Set(v.split('\n').map(s=>s.trim()).filter(Boolean))];
   D.instansi=$('sNama').value.trim();D.kota=$('sKota').value.trim();D.tahun=+$('sThn').value;D.saldoAwal=Math.round(+$('sSaldo').value)||0;
   D.ketua=$('sKetua').value.trim();D.sekretaris=$('sSek').value.trim();D.bendahara=$('sBend').value.trim();
